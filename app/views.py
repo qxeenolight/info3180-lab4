@@ -70,6 +70,11 @@ def login():
             return redirect(url_for("upload"))  # The user should be redirected to the upload form instead
     return render_template("login.html", form=form)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('Logout Successful', 'success')
+    return redirect(url_for("home"))
 
 # # -------------------------------------------
 def get_uploaded_images():
@@ -83,14 +88,12 @@ def get_uploaded_images():
 
 @app.route('/uploads/<filename>')
 def get_image(filename):
-    """Get the uploaded image."""
     return send_from_directory(os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER']), filename)
 
 @app.route('/files')
 @login_required
 def files():
-    image_filenames = get_uploaded_images()
-    return render_template('files.html', images=image_filenames)
+    return render_template("files.html", images=get_uploaded_images())
 # -------------------------------------------
 
 
