@@ -19,6 +19,6 @@ typing_extensions==4.10.0
 Werkzeug==3.0.1
 WTForms==3.0.1
 zipp==3.14.0
+psycopg2-binary
 # greenlet==2.0.2
 # psycopg2==2.9.7
-# psycopg2-binary
